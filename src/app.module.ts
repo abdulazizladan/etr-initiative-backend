@@ -6,6 +6,8 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { PostsModule } from './posts/posts.module';
 import { Post } from './posts/entities/post.entity';
+import { ProgramsModule } from './programs/programs.module';
+import { Program } from './programs/entities/program.entity';
 
 @Module({
   imports: [
@@ -15,11 +17,12 @@ import { Post } from './posts/entities/post.entity';
     TypeOrmModule.forRoot({
       type: 'better-sqlite3',
       database: 'data/etr_blog.sqlite',
-      entities: [Post],
+      entities: [Post, Program],
       synchronize: true, // auto-creates tables in development
     }),
     AuthModule,
     PostsModule,
+    ProgramsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
