@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsNumber } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateProgramDto {
@@ -36,12 +36,12 @@ export class CreateProgramDto {
 
   @ApiProperty({
     description: 'Impact statistic number',
-    example: '5,000+',
+    example: 5000,
     required: false,
   })
-  @IsString()
+  @IsNumber()
   @IsOptional()
-  impactNumber?: string;
+  impactNumber?: number;
 
   @ApiProperty({
     description: 'Label for the impact statistic',

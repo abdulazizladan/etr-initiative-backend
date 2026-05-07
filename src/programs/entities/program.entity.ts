@@ -29,9 +29,9 @@ export class Program {
   @Column()
   image: string;
 
-  @ApiProperty({ example: '5,000+', description: 'Impact statistic number' })
-  @Column({ nullable: true })
-  impactNumber: string;
+  @ApiProperty({ example: 5000, description: 'Impact statistic number' })
+  @Column({ type: 'int', default: 0 })
+  impactNumber: number;
 
   @ApiProperty({ example: 'Students Trained', description: 'Label for the impact statistic' })
   @Column({ nullable: true })
