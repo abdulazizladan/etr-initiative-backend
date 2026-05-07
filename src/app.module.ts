@@ -8,6 +8,10 @@ import { PostsModule } from './posts/posts.module';
 import { Post } from './posts/entities/post.entity';
 import { ProgramsModule } from './programs/programs.module';
 import { Program } from './programs/entities/program.entity';
+import { User } from './auth/entities/user.entity';
+import { WebsiteModule } from './website/website.module';
+import { WebsiteInfo } from './website/entities/website-info.entity';
+import { TeamMember } from './website/entities/team-member.entity';
 
 @Module({
   imports: [
@@ -17,12 +21,13 @@ import { Program } from './programs/entities/program.entity';
     TypeOrmModule.forRoot({
       type: 'better-sqlite3',
       database: 'data/etr_blog.sqlite',
-      entities: [Post, Program],
+      entities: [Post, Program, User, WebsiteInfo, TeamMember],
       synchronize: true, // auto-creates tables in development
     }),
     AuthModule,
     PostsModule,
     ProgramsModule,
+    WebsiteModule,
   ],
   controllers: [AppController],
   providers: [AppService],
