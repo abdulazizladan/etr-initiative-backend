@@ -12,11 +12,18 @@ import { User } from './auth/entities/user.entity';
 import { WebsiteModule } from './website/website.module';
 import { WebsiteInfo } from './website/entities/website-info.entity';
 import { TeamMember } from './website/entities/team-member.entity';
+import { FilesModule } from './files/files.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true, // Make ConfigService available everywhere
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+      serveRoot: '/', // Serve files from public folder at root (e.g., /uploads/...)
     }),
     TypeOrmModule.forRoot({
       type: 'better-sqlite3',
@@ -28,6 +35,7 @@ import { TeamMember } from './website/entities/team-member.entity';
     PostsModule,
     ProgramsModule,
     WebsiteModule,
+    FilesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
